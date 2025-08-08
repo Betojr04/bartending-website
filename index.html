@@ -14,24 +14,25 @@
         rel="stylesheet">
     <style>
         :root {
-            --bg: #0b0b0f;
-            /* charcoal black */
-            --fg: #e7e7ef;
-            /* soft white */
-            --muted: #a7a7b3;
-            /* muted gray */
-            --card: #111117;
-            /* card bg */
-            --stroke: #1b1b25;
-            /* borders */
-            --accent: #7c5cff;
-            /* neon violet */
-            --accent-2: #00e6a8;
-            /* mint */
-            --accent-3: #27b0ff;
-            /* cyan */
+            /* Light, hospitality-forward palette */
+            --bg: #fffaf5;
+            /* warm paper */
+            --fg: #1c130c;
+            /* rich espresso text */
+            --muted: #6b5e54;
+            /* soft taupe */
+            --card: #ffffff;
+            /* white cards */
+            --stroke: #efe7dc;
+            /* warm border */
+            --accent: #c7953b;
+            /* champagne gold */
+            --accent-2: #2f7658;
+            /* muddled mint */
+            --accent-3: #e76f51;
+            /* aperol/coral */
             --radius: 20px;
-            --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+            --shadow: 0 10px 26px rgba(28, 19, 12, .08);
         }
 
         * {
@@ -46,8 +47,8 @@
         body {
             margin: 0;
             background:
-                radial-gradient(1200px 800px at 10% -10%, rgba(124, 92, 255, .15), transparent 60%),
-                radial-gradient(1200px 800px at 90% 10%, rgba(39, 176, 255, .12), transparent 60%),
+                radial-gradient(1200px 700px at 10% -10%, rgba(199, 149, 59, .08), transparent 60%),
+                radial-gradient(900px 600px at 90% 10%, rgba(231, 111, 81, .06), transparent 60%),
                 var(--bg);
             color: var(--fg);
             font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
@@ -69,7 +70,7 @@
             top: 0;
             z-index: 50;
             backdrop-filter: saturate(180%) blur(10px);
-            background: rgba(11, 11, 15, .6);
+            background: rgba(255, 250, 245, .75);
             border-bottom: 1px solid var(--stroke);
         }
 
@@ -78,6 +79,8 @@
             align-items: center;
             justify-content: space-between;
             height: 64px;
+            position: relative;
+            /* <-- needed so the dropdown anchors under header */
         }
 
         .brand {
@@ -92,8 +95,8 @@
             width: 34px;
             height: 34px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent), var(--accent-3));
-            box-shadow: 0 0 30px rgba(124, 92, 255, .35);
+            background: linear-gradient(135deg, var(--accent), color-mix(in oklab, var(--accent-3) 45%, var(--accent)));
+            box-shadow: 0 0 18px rgba(199, 149, 59, .35);
         }
 
         .brand-name {
@@ -124,8 +127,8 @@
             gap: 10px;
             padding: 10px 16px;
             border-radius: 999px;
-            border: 1px solid #2a2a3a;
-            background: linear-gradient(180deg, #14141c, #0f0f16);
+            border: 1px solid color-mix(in oklab, var(--accent) 20%, var(--stroke));
+            background: linear-gradient(180deg, #fff, #fbf4ea);
             color: var(--fg);
             text-decoration: none;
             font-weight: 700;
@@ -137,10 +140,10 @@
         .cta:hover {
             outline: none;
             border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(124, 92, 255, .18), var(--shadow);
+            box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 25%, transparent), var(--shadow);
         }
 
-        /* Mobile menu */
+        /* Mobile menu button */
         .hamburger {
             display: inline-flex;
             background: transparent;
@@ -148,13 +151,55 @@
             color: var(--fg);
         }
 
-        @media (min-width: 860px) {
+        /* Desktop navigation */
+        @media (min-width:860px) {
             .nav-links {
                 display: flex;
             }
 
             .hamburger {
                 display: none;
+            }
+        }
+
+        /* Mobile dropdown navigation */
+        @media (max-width:859px) {
+            .nav-links {
+                position: absolute;
+                top: 64px;
+                /* match header height */
+                left: 0;
+                right: 0;
+                background: var(--card);
+                border-bottom: 1px solid var(--stroke);
+                padding: 12px 20px 16px;
+                display: none;
+                /* hidden by default */
+                flex-direction: column;
+                /* vertical list */
+                gap: 12px;
+                z-index: 60;
+            }
+
+            .nav-links a {
+                padding: 10px 4px;
+            }
+
+            .nav-links.open {
+                display: flex;
+                animation: dropdown .18s ease-out;
+            }
+
+            @keyframes dropdown {
+                from {
+                    transform: translateY(-6px);
+                    opacity: 0;
+                }
+
+                to {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
             }
         }
 
@@ -172,7 +217,7 @@
             align-items: center;
         }
 
-        @media (min-width: 920px) {
+        @media (min-width:920px) {
             .hero-grid {
                 grid-template-columns: 1.2fr .8fr;
                 gap: 48px;
@@ -208,9 +253,9 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--accent), var(--accent-3));
+            background: linear-gradient(135deg, color-mix(in oklab, var(--accent) 85%, #fff 10%), var(--accent));
             border: 0;
-            color: #0a0a0e;
+            color: #2b1d0a;
             font-weight: 900;
         }
 
@@ -220,7 +265,7 @@
         }
 
         .hero-card {
-            background: radial-gradient(600px 300px at 20% 0%, rgba(124, 92, 255, .18), transparent 40%), var(--card);
+            background: radial-gradient(600px 300px at 20% 0%, rgba(199, 149, 59, .15), transparent 40%), var(--card);
             border: 1px solid var(--stroke);
             border-radius: var(--radius);
             padding: 20px;
@@ -233,7 +278,7 @@
             gap: 8px 12px;
             align-items: start;
             padding: 12px 0;
-            border-bottom: 1px dashed #222230;
+            border-bottom: 1px dashed #e9dfd1;
         }
 
         .stat:last-child {
@@ -275,7 +320,7 @@
             gap: 16px;
         }
 
-        @media (min-width: 860px) {
+        @media (min-width:860px) {
             .cards {
                 grid-template-columns: repeat(3, 1fr);
             }
@@ -300,10 +345,11 @@
         .pill {
             display: inline-block;
             padding: 6px 10px;
-            border: 1px solid #2c2c3a;
+            border: 1px solid #efe7dc;
             border-radius: 999px;
             font-size: .8rem;
             color: var(--muted);
+            background: #fffdf9;
         }
 
         .price {
@@ -314,15 +360,15 @@
 
         /* --- Highlighted notice --- */
         .notice {
-            background: rgba(124, 92, 255, .10);
-            border: 1px solid rgba(124, 92, 255, .35);
+            background: color-mix(in oklab, var(--accent) 12%, #fff);
+            border: 1px solid color-mix(in oklab, var(--accent) 35%, var(--stroke));
             border-radius: 14px;
             padding: 12px 14px;
-            box-shadow: 0 6px 16px rgba(0, 0, 0, .18);
+            box-shadow: 0 6px 16px rgba(28, 19, 12, .06);
         }
 
         .notice strong {
-            color: #fff;
+            color: var(--fg);
         }
 
         /* --- FAQ --- */
@@ -380,8 +426,8 @@
         .shot {
             aspect-ratio: 1 / 1;
             border-radius: 14px;
-            background: linear-gradient(135deg, #141420, #0c0c14);
-            border: 1px solid #1c1c28;
+            background: linear-gradient(135deg, #fff, #faf2e7);
+            border: 1px solid #efe7dc;
             position: relative;
             overflow: hidden;
         }
@@ -406,7 +452,6 @@
             grid-column: span 3;
         }
 
-        /* Make images fill tiles */
         .shot img {
             width: 100%;
             height: 100%;
@@ -428,7 +473,7 @@
             gap: 24px;
         }
 
-        @media (min-width: 860px) {
+        @media (min-width:860px) {
             .foot-grid {
                 grid-template-columns: 1.2fr .8fr;
             }
@@ -449,7 +494,7 @@
             inset: 0;
             display: none;
             place-items: center;
-            background: rgba(0, 0, 0, .6);
+            background: rgba(0, 0, 0, .35);
             backdrop-filter: blur(6px);
             z-index: 100;
         }
@@ -487,10 +532,22 @@
             cursor: pointer;
         }
 
+        .modal-body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            background: #fff;
+        }
+
         .modal-body iframe {
             width: 100%;
+            max-width: 720px;
             height: 100%;
             border: 0;
+            display: block;
+            margin: 0 auto;
+            background: #fff;
         }
 
         .modal-backdrop.show {
@@ -512,6 +569,7 @@
             display: none;
         }
     </style>
+
 </head>
 
 <body>
@@ -789,8 +847,8 @@
                 <button class="close" id="closeModal" aria-label="Close">×</button>
             </div>
             <div class="modal-body">
-                <!-- Tally embed -->
-                <iframe id="tallyFrame" src="https://tally.so/r/wo8J7x?=1&hideTitle=1&theme=light&dynamicHeight=1"
+                <!-- Tally embed (centered + light theme) -->
+                <iframe id="tallyFrame" src="https://tally.so/r/wo8J7x?hideTitle=1&theme=light&dynamicHeight=1"
                     title="Quote Form"></iframe>
             </div>
         </div>
@@ -811,10 +869,17 @@
         // Mobile nav toggle
         const menuBtn = document.getElementById('menuBtn');
         const links = document.querySelector('.nav-links');
+
         menuBtn?.addEventListener('click', () => {
-            const showing = getComputedStyle(links).display !== 'none';
-            links.style.display = showing ? 'none' : 'flex';
+            const isOpen = links.classList.toggle('open');
+            menuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         });
+
+        // Close menu after tapping a link (mobile)
+        document.querySelectorAll('.nav-links a').forEach(a =>
+            a.addEventListener('click', () => links.classList.remove('open'))
+        );
+
     </script>
 
     <!-- SEO -->
@@ -826,17 +891,9 @@
     "image": "https://example.com/og-image.jpg",
     "url": "https://tragoscrafted.com",
     "telephone": "+1-480-000-0000",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Phoenix",
-      "addressRegion": "AZ",
-      "addressCountry": "US"
-    },
-    "areaServed": ["Phoenix", "Scottsdale", "Tempe", "Mesa", "West Valley", "Gilbert"],
-    "sameAs": [
-      "https://instagram.com/betoo__04",
-      "https://www.tiktok.com/@thebetoproject"
-    ]
+    "address": { "@type": "PostalAddress", "addressLocality": "Phoenix", "addressRegion": "AZ", "addressCountry": "US" },
+    "areaServed": ["Phoenix","Scottsdale","Tempe","Mesa","West Valley","Gilbert"],
+    "sameAs": ["https://instagram.com/betoo__04","https://www.tiktok.com/@thebetoproject"]
   }
   </script>
 </body>
