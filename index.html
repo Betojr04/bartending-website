@@ -45,7 +45,8 @@
 
         body {
             margin: 0;
-            background: radial-gradient(1200px 800px at 10% -10%, rgba(124, 92, 255, .15), transparent 60%),
+            background:
+                radial-gradient(1200px 800px at 10% -10%, rgba(124, 92, 255, .15), transparent 60%),
                 radial-gradient(1200px 800px at 90% 10%, rgba(39, 176, 255, .12), transparent 60%),
                 var(--bg);
             color: var(--fg);
@@ -250,7 +251,7 @@
             margin: 0;
         }
 
-        /* --- Services --- */
+        /* --- Sections --- */
         section {
             padding: 72px 0;
         }
@@ -311,6 +312,64 @@
             font-size: 1.3rem;
         }
 
+        /* --- Highlighted notice --- */
+        .notice {
+            background: rgba(124, 92, 255, .10);
+            border: 1px solid rgba(124, 92, 255, .35);
+            border-radius: 14px;
+            padding: 12px 14px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, .18);
+        }
+
+        .notice strong {
+            color: #fff;
+        }
+
+        /* --- FAQ --- */
+        .faq {
+            display: grid;
+            gap: 10px;
+        }
+
+        .faq details {
+            background: var(--card);
+            border: 1px solid var(--stroke);
+            border-radius: 14px;
+            padding: 10px 14px;
+            box-shadow: var(--shadow);
+        }
+
+        .faq summary {
+            list-style: none;
+            cursor: pointer;
+            font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .faq summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq .q {
+            color: var(--fg);
+        }
+
+        .faq .a {
+            color: var(--muted);
+            margin: 8px 2px 2px;
+        }
+
+        .faq .chev {
+            transition: transform .2s ease;
+        }
+
+        details[open] .chev {
+            transform: rotate(180deg);
+        }
+
         /* --- Gallery --- */
         .gallery {
             display: grid;
@@ -325,14 +384,6 @@
             border: 1px solid #1c1c28;
             position: relative;
             overflow: hidden;
-        }
-
-        .shot::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(400px 200px at 30% 0%, rgba(124, 92, 255, .25), transparent 55%);
-            mix-blend-mode: screen;
         }
 
         .shot:nth-child(1) {
@@ -353,6 +404,15 @@
 
         .shot:nth-child(5) {
             grid-column: span 3;
+        }
+
+        /* Make images fill tiles */
+        .shot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 14px;
+            display: block;
         }
 
         /* --- Footer --- */
@@ -480,8 +540,8 @@
         <section class="hero container">
             <div class="hero-grid">
                 <div>
-                    <div class="eyebrow">Phoenix • Scottsdale • Tempe</div>
-                    <h1 class="headline">Mobile bartending that makes your event <em>unforgettable</em>.</h1>
+                    <div class="eyebrow">Phoenix • Scottsdale • Tempe • Mesa • West Valley • Gilbert</div>
+                    <h1 class="headline">Your Party, Our Craft — Events from $500</h1>
                     <p class="subhead">Premium cocktails, pro service, and zero stress. Weddings, house parties,
                         corporate events, and everything in between.</p>
                     <div class="hero-cta">
@@ -501,8 +561,8 @@
                         <p class="kicker">Mixers, garnish, bar tools — we bring it all</p>
                     </div>
                     <div class="stat">
-                        <h4>Fully Insured</h4>
-                        <p class="kicker">COI available for venues</p>
+                        <h4>Licensed Bartender</h4>
+                        <p class="kicker">Liquor 4 License Certified</p>
                     </div>
                 </div>
             </div>
@@ -511,35 +571,107 @@
         <!-- SERVICES -->
         <section id="services" class="container">
             <div class="section-head">
-                <h2 class="section-title">Packages</h2>
+                <h2 class="section-title">Our Premium Packages</h2>
                 <a class="cta btn-outline" href="#" id="openQuote3">Get pricing</a>
             </div>
             <div class="cards">
                 <article class="card">
-                    <span class="pill">Most Popular</span>
-                    <h3>Classic Bar</h3>
-                    <p>Up to 75 guests • 4 hrs • 2 signature cocktails • mocktail option • pro bartender</p>
+                    <span class="pill">Essentials</span>
+                    <h3>Starting at $500</h3>
+                    <p>Perfect for small house parties or intimate gatherings. Includes up to 5 hours of bartending
+                        service, bar setup, and excellent vibes for your event.</p>
+                    <p class="muted"><em>Alcohol provided by client.</em></p>
                     <div class="row">
-                        <span class="price">Starting at $XXX</span>
                         <a class="cta" href="#" id="openQuote4">Request quote</a>
                     </div>
                 </article>
                 <article class="card">
-                    <h3>Premium Bar</h3>
-                    <p>Up to 150 guests • 5 hrs • 4 signature cocktails • garnish wall • barback</p>
+                    <span class="pill">Signature</span>
+                    <h3>Starting at $1,000</h3>
+                    <p>Ideal for bachelor/bachelorette parties, corporate events, and mid-sized celebrations. Includes
+                        aesthetic bar setup, custom menu consultation, and extended service.</p>
+                    <p class="muted"><em>Alcohol provided by client.</em></p>
                     <div class="row">
-                        <span class="price">Starting at $XXX</span>
                         <a class="cta" href="#" id="openQuote5">Request quote</a>
                     </div>
                 </article>
                 <article class="card">
-                    <h3>Espresso & Cocktails</h3>
-                    <p>Signature coffee drinks + cocktail pairings (power by Jackery when needed)</p>
+                    <span class="pill">Luxury</span>
+                    <h3>Starting at $1,500</h3>
+                    <p>Designed for weddings and high-end events. Features a fully tailored cocktail menu, premium
+                        aesthetic styling, and optional extra bartender for flawless execution.</p>
+                    <p class="muted"><em>Alcohol provided by client.</em></p>
                     <div class="row">
-                        <span class="price">Custom</span>
                         <a class="cta" href="#" id="openQuote6">Request quote</a>
                     </div>
                 </article>
+            </div>
+
+            <!-- Notes under packages -->
+            <div style="margin-top:18px;" class="notice">
+                <p class="muted"><strong>All services follow a dry-hire model (client supplies alcohol). Pricing varies
+                        based on guest count, service hours, and optional add-ons.</strong></p>
+                <p class="muted" style="margin-top:6px;"><strong>A 50% deposit is required to reserve your date and is
+                        non-refundable.</strong></p>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="container">
+            <div class="section-head">
+                <h2 class="section-title">FAQ</h2>
+            </div>
+            <div class="faq">
+                <details>
+                    <summary><span class="q">How much alcohol should I buy?</span><span class="chev">⌄</span></summary>
+                    <p class="a">Rule of thumb per guest per hour: ~1 drink. For a 4-hour event with 50 guests, plan
+                        ~200 servings. I’ll send a tailored shopping list once we confirm headcount and menu.</p>
+                </details>
+                <details>
+                    <summary><span class="q">Do you provide alcohol?</span><span class="chev">⌄</span></summary>
+                    <p class="a">We operate dry-hire — <em>you</em> supply alcohol. I’ll guide you on brands,
+                        quantities, and where to save vs. splurge.</p>
+                </details>
+                <details>
+                    <summary><span class="q">Do you bring glassware and bar equipment?</span><span class="chev">⌄</span>
+                    </summary>
+                    <p class="a">Professional bar tools are included. Glassware rental and premium aesthetic bar setups
+                        are available as add-ons.</p>
+                </details>
+                <details>
+                    <summary><span class="q">What areas do you serve?</span><span class="chev">⌄</span></summary>
+                    <p class="a">Phoenix, Scottsdale, Tempe, Mesa, West Valley, and Gilbert. Ask about travel fees for
+                        farther locations.</p>
+                </details>
+                <details>
+                    <summary><span class="q">What’s the deposit and is it refundable?</span><span class="chev">⌄</span>
+                    </summary>
+                    <p class="a">A <strong>50% deposit</strong> is required to reserve your date and is
+                        <strong>non-refundable</strong>. The balance is due before service begins.
+                    </p>
+                </details>
+                <details>
+                    <summary><span class="q">Can I reschedule?</span><span class="chev">⌄</span></summary>
+                    <p class="a">If your new date is available, we’ll move your booking and apply your deposit. If the
+                        new date isn’t available, the original deposit remains non-refundable.</p>
+                </details>
+                <details>
+                    <summary><span class="q">Payment methods?</span><span class="chev">⌄</span></summary>
+                    <p class="a">Major cards via invoice or payment link. Cash is fine for remaining balances. Ask if
+                        you need a receipt for your venue.</p>
+                </details>
+                <details>
+                    <summary><span class="q">Do venues require insurance (COI)?</span><span class="chev">⌄</span>
+                    </summary>
+                    <p class="a">Some do. Please let me know during the quote request if your venue requires a COI so we
+                        can discuss options before booking.</p>
+                </details>
+                <details>
+                    <summary><span class="q">How far in advance should I book?</span><span class="chev">⌄</span>
+                    </summary>
+                    <p class="a">2–6 weeks is ideal. Popular weekends fill up fast — drop a quote request to lock your
+                        date.</p>
+                </details>
             </div>
         </section>
 
@@ -550,11 +682,26 @@
                 <p class="muted">A few looks from recent events — more on Instagram.</p>
             </div>
             <div class="gallery">
-                <div class="shot"></div>
-                <div class="shot"></div>
-                <div class="shot"></div>
-                <div class="shot"></div>
-                <div class="shot"></div>
+                <div class="shot">
+                    <img src="https://images.unsplash.com/photo-1681732500310-34637949518c?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8YmFydGVuZGluZ3xlbnwwfHwwfHx8MA%3D%3D"
+                        alt="Bartending setup at event">
+                </div>
+                <div class="shot">
+                    <img src="https://images.unsplash.com/photo-1681732500310-34637949518c?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8YmFydGVuZGluZ3xlbnwwfHwwfHx8MA%3D%3D"
+                        alt="Cocktail being poured at bar">
+                </div>
+                <div class="shot">
+                    <img src="https://images.unsplash.com/photo-1681732500310-34637949518c?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8YmFydGVuZGluZ3xlbnwwfHwwfHx8MA%3D%3D"
+                        alt="Mixing drinks behind the bar">
+                </div>
+                <div class="shot">
+                    <img src="https://images.unsplash.com/photo-1681732500310-34637949518c?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8YmFydGVuZGluZ3xlbnwwfHwwfHx8MA%3D%3D"
+                        alt="Bartender shaking cocktail">
+                </div>
+                <div class="shot">
+                    <img src="https://images.unsplash.com/photo-1681732500310-34637949518c?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8YmFydGVuZGluZ3xlbnwwfHwwfHx8MA%3D%3D"
+                        alt="Bartender serving guests">
+                </div>
             </div>
         </section>
 
@@ -564,6 +711,13 @@
                 <h2 class="section-title">Contact</h2>
                 <a class="cta btn-outline" href="#" id="openQuote7">Quick quote</a>
             </div>
+
+            <!-- Deposit note above the form -->
+            <div class="notice" style="margin: -6px 0 14px;">
+                <p class="muted"><strong>A 50% deposit is required to secure your booking. Deposits are
+                        non-refundable.</strong></p>
+            </div>
+
             <div class="cards" style="grid-template-columns: 1.2fr .8fr;">
                 <article class="card">
                     <h3>Fast Quote Form</h3>
@@ -574,11 +728,12 @@
                     <h3>Other Ways</h3>
                     <p class="muted">Whatever’s easiest for you.</p>
                     <div class="row">
-                        <a class="cta" href="mailto:hello@tragoscrafted.com">Email</a>
+                        <a class="cta" href="mailto:contact@tragoscrafted.com">Email</a>
                         <a class="cta" href="tel:+1-480-000-0000">Call</a>
-                        <a class="cta" href="https://instagram.com/yourhandle" target="_blank"
+                        <a class="cta" href="https://instagram.com/betoo__04" target="_blank"
                             rel="noopener">Instagram</a>
-                        <a class="cta" href="https://tiktok.com/@yourhandle" target="_blank" rel="noopener">TikTok</a>
+                        <a class="cta" href="https://tiktok.com/@thebetoproject" target="_blank"
+                            rel="noopener">TikTok</a>
                     </div>
                 </article>
             </div>
@@ -592,8 +747,8 @@
                     <div class="brand-logo"></div>
                     <span class="brand-name">Tragos Crafted</span>
                 </div>
-                <p class="muted">Elevated mobile bartending for Arizona events. Insured, professional, and
-                    guest-obsessed.</p>
+                <p class="muted">Elevated mobile bartending for Arizona events. Professional, guest-obsessed service.
+                </p>
             </div>
             <div>
                 <div class="socials">
@@ -603,8 +758,7 @@
                             <path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.6" />
                         </svg>
                     </a>
-                    <a href="https://github.com/Betojr04/bartending-website.git" target="_blank" rel="noopener"
-                        aria-label="Instagram">
+                    <a href="https://instagram.com/betoo__04" target="_blank" rel="noopener" aria-label="Instagram">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6" />
                             <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6" />
@@ -635,8 +789,10 @@
                 <button class="close" id="closeModal" aria-label="Close">×</button>
             </div>
             <div class="modal-body">
-                <!-- Replace YOUR_TALLY_FORM_ID with the actual form ID or full embed URL -->
-                <iframe id="tallyFrame" src="https://tally.so/r/wo8J7x" title="Quote Form"></iframe>
+                <!-- Tally embed -->
+                <iframe id="tallyFrame"
+                    src="https://tally.so/r/wo8J7x?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+                    title="Quote Form"></iframe>
             </div>
         </div>
     </div>
@@ -660,32 +816,29 @@
             const showing = getComputedStyle(links).display !== 'none';
             links.style.display = showing ? 'none' : 'flex';
         });
-
-        // (Optional) Stripe Payment Link placeholder logic
-        // const depositLink = 'https://buy.stripe.com/your_payment_link';
     </script>
 
     <!-- SEO -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Tragos Crafted",
-      "image": "https://example.com/og-image.jpg",
-      "url": "https://tragoscrafted.com",
-      "telephone": "+1-480-000-0000",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Phoenix",
-        "addressRegion": "AZ",
-        "addressCountry": "US"
-      },
-      "areaServed": ["Phoenix", "Scottsdale", "Tempe"],
-      "sameAs": [
-        "https://instagram.com/yourhandle",
-        "https://tiktok.com/@yourhandle"
-      ]
-    }
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Tragos Crafted",
+    "image": "https://example.com/og-image.jpg",
+    "url": "https://tragoscrafted.com",
+    "telephone": "+1-480-000-0000",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Phoenix",
+      "addressRegion": "AZ",
+      "addressCountry": "US"
+    },
+    "areaServed": ["Phoenix", "Scottsdale", "Tempe", "Mesa", "West Valley", "Gilbert"],
+    "sameAs": [
+      "https://instagram.com/betoo__04",
+      "https://www.tiktok.com/@thebetoproject"
+    ]
+  }
   </script>
 </body>
 
